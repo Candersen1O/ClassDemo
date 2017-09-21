@@ -14,5 +14,8 @@ namespace Chinook.Data.Entities
         [StringLength(120, ErrorMessage ="Name is Limited to 120 characters")]
         public string Name { get; set; }
 
+        //nav property
+        //to a child
+        public virtual ICollection<Album> Albums { get; set; }
     }
 }
