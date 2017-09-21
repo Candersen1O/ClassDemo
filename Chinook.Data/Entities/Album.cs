@@ -26,6 +26,7 @@ namespace Chinook.Data.Entities
         public string ReleaseLabel { get; set; }
 
        //nav properties
+       //to a parent
        public virtual 
     }
 }
