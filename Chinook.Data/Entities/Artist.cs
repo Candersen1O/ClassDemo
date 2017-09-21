@@ -11,7 +11,7 @@ namespace Chinook.Data.Entities
         [Key]
         public int ArtistId { get; set; }
 
-        [StringLength(120)]
+        [StringLength(120, ErrorMessage ="Name is Limited to 120 characters")]
         public string Name { get; set; }
 
     }
