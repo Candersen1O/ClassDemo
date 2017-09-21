@@ -5,7 +5,7 @@
     <asp:Label ID="Label2" runat="server" Text="pick something, dummy!"></asp:Label>
     <asp:DropDownList ID="ArtistList" runat="server" DataSourceID="ArtistListODS" DataTextField="Name" DataValueField="ArtistId"></asp:DropDownList>
     <asp:Button ID="Button1" runat="server" Text="GO" /><br />
-    <asp:GridView ID="ArtistAlbumsList" runat="server" AutoGenerateColumns="False" DataSourceID="ArtistAlbumsListODS">
+    <asp:GridView ID="ArtistAlbumsList" runat="server" AutoGenerateColumns="False" DataSourceID="ArtistAlbumsListODS" AllowPaging="True">
         <Columns>
             <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title"></asp:BoundField>
             <asp:BoundField DataField="Released" HeaderText="Released" SortExpression="Released"></asp:BoundField>
