@@ -11,7 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -46,16 +46,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="~/">DMIT-2018</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                    <%--<ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
-                        
-                        <li><a runat="server" href="~/samplepage/FirstLinkSample">demo1</a></li>
-                    </ul>
+
+                        <li><a runat="server" href="~/samplepage/FirstLinkSample">demo1:Linq sample</a></li>
+                        <li><a runat="server" href="~/samplepage/Default">demo2</a></li>
+                    </ul>--%>
+                    <!--replace dfault menu with menu control which will be located after the loginview control.
+                        the menu control is moved there to allow proper presentaiotn on the webpage to get around the bootstrap formating -->
+
+
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
@@ -72,9 +77,41 @@
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
+
+                    <!--reaplcement navmenu - two ways of creating the menu
+                        a) use the CPSC 1517 technique of menu control, web.sitemap and the sitemap datasource control
+                        b)code the menu control and content in theis area 
+                        -->
+                    <asp:Menu ID="navmenu" runat="server"
+                        BackColor="#333333"
+                        BorderColor="Red"
+                        StaticMenuItemStyle-ForeColor="YellowGreen"
+                        StaticMenuStyle-VerticalPadding="15px" StaticMenuItemStyle-HorizontalPadding="20px"
+                       
+                        StaticMenuItemStyle-FontSize="Large"
+                        RenderingMode="List"
+                        Orientation="Horizontal"
+                        DynamicMenuItemStyle-ForeColor="#999999"
+                        DynamicMenuItemStyle-FontSize="Large"
+                        DynamicMenuItemStyle-FontColor="YellowGreen"
+                        DynamicMenuStyle-BackColor="Black">
+                        <Items>
+                            <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
+
+                            <asp:MenuItem Text="Queries">
+                                <asp:MenuItem Text="First Linq Demo" NavigateUrl="~/samplepage/FirstLinkSample.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Second Linq Demo" NavigateUrl="~/samplepage/Default.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="About" NavigateUrl="~/About.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Contact" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
+
+                        </Items>
+                    </asp:Menu>
+
                 </div>
             </div>
         </div>
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

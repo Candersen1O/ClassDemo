@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FirstLinkSample.aspx.cs" Inherits="samplepage_FirstLinkSample" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <h1>Albums for Artist #90</h1>
+    <h1>Albums for Artist</h1>
     <asp:Label ID="Label2" runat="server" Text="pick something, dummy!"></asp:Label>
     <asp:DropDownList ID="ArtistList" runat="server" DataSourceID="ArtistListODS" DataTextField="Name" DataValueField="ArtistId"></asp:DropDownList>
     <asp:Button ID="Button1" runat="server" Text="GO" /><br />
