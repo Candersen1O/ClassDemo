@@ -83,17 +83,17 @@
                         b)code the menu control and content in theis area 
                         -->
                     <asp:Menu ID="navmenu" runat="server"
-                        BackColor="#333333"
+                        BackColor="#222222"
                         BorderColor="Red"
                         StaticMenuItemStyle-ForeColor="YellowGreen"
                         StaticMenuStyle-VerticalPadding="15px" StaticMenuItemStyle-HorizontalPadding="20px"
                        
-                        StaticMenuItemStyle-FontSize="Large"
+                        StaticMenuItemStyle-Font-Size="Large"
                         RenderingMode="List"
                         Orientation="Horizontal"
                         DynamicMenuItemStyle-ForeColor="#999999"
                         DynamicMenuItemStyle-FontSize="Large"
-                        DynamicMenuItemStyle-FontColor="YellowGreen"
+                        DynamicMenuItemStyle-Font-Color="YellowGreen" 
                         DynamicMenuStyle-BackColor="Black">
                         <Items>
                             <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
