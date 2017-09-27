@@ -101,6 +101,7 @@
                             <asp:MenuItem Text="Queries">
                                 <asp:MenuItem Text="First Linq Demo" NavigateUrl="~/samplepage/FirstLinkSample.aspx"></asp:MenuItem>
                                 <asp:MenuItem Text="Second Linq Demo" NavigateUrl="~/samplepage/Default.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Third Linq Demo" NavigateUrl="~/samplepage/RepeaterExample.aspx"></asp:MenuItem>
                             </asp:MenuItem>
                             <asp:MenuItem Text="About" NavigateUrl="~/About.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Contact" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
