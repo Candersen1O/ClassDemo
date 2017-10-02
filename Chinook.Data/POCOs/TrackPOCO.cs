@@ -10,7 +10,7 @@ namespace Chinook.Data.POCOs
     {
         public string song { get; set; }
         public int length { get; set; }
-        public string LENGTH
+        public string ALENGTH
         {
             get
             {
