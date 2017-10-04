@@ -22,7 +22,75 @@
                 <ItemTemplate>
                     <strong>Album:
                          <%# string.Format("{0} ({1}) Tracks: {2}", Eval("title"), Eval("year"), Eval("numotracks")) %></strong><br />
-                    <asp:Repeater ID="AlbumTracksList" runat="server" DataSource="<%# Item.tracks %>" ItemType="Chinook.Data.POCOs.TrackPOCO">
+
+
+
+                    <asp:ListView ID="AlbumTracksListL" runat="server" ItemType="Chinook.Data.POCOs.TrackPOCO" DataSource="<%# Item.tracks %>">
+                        <LayoutTemplate>
+                            <table>
+                                <tr>
+                                    <th>Song</th>
+                                    <th>Length</th>
+
+                                </tr>
+                                <!--list view doesn't work withot 1 item.placeholder-->
+                                <tr id="itemPlaceholder" runat="server">
+                                </tr>
+                            </table>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <tr>
+                                <td style="width:600px">"<%# Item.song %>"</td>
+                           
+                                <td><%# Item.ALENGTH %></td>
+                            </tr>
+                        </ItemTemplate>
+                        <AlternatingItemTemplate>
+                            <tr>
+                                <td style="width:600px; background-color:aqua">"<%# Item.song %>"</td>
+                          
+                                <td style=" background-color:aqua"><%# Item.ALENGTH %></td>
+                            </tr>
+                        </AlternatingItemTemplate>
+                        <EmptyDataTemplate>
+                            <tr>
+                                <td colspan="2">No Data Found</td>
+                            </tr>
+                        </EmptyDataTemplate>
+                    </asp:ListView>
+
+
+
+                    <%--<asp:GridView ID="AlbunTracksListG" runat="server" ItemType="Chinook.Data.POCOs.TrackPOCO" DataSource="<%# Item.tracks %>" AutoGenerateColumns="False" GridLines="Horizontal">
+
+                        <Columns>
+
+                            <asp:TemplateField HeaderText="Song">
+                                <AlternatingItemTemplate>
+                                    <asp:Label runat="server" Text="<%# Item.song %>" Width="600px" BackColor="Black" ForeColor="White"></asp:Label>
+                                </AlternatingItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text="<%# Item.song %>" Width="600px"></asp:Label>
+                                </ItemTemplate>
+
+                                <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+
+                                <ItemStyle HorizontalAlign="Left"></ItemStyle>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Length">
+                                <AlternatingItemTemplate>
+                                    <asp:Label runat="server" Text="<%# Item.ALENGTH %>" BackColor="Black" ForeColor="White"></asp:Label>
+                                </AlternatingItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text="<%# Item.ALENGTH %>"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right"></ItemStyle>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>--%>
+
+
+                    <%-- <asp:Repeater ID="AlbumTracksList" runat="server" DataSource="<%# Item.tracks %>" ItemType="Chinook.Data.POCOs.TrackPOCO">
                         <HeaderTemplate>
                             <table>
                                 <tr>
@@ -41,10 +109,10 @@
                             </table>
                         </FooterTemplate>
 
-                    </asp:Repeater>
+                    </asp:Repeater>--%>
                 </ItemTemplate>
                 <SeparatorTemplate>
-                    <hr style="height:4px; color:blue;"/>
+                    <hr style="height: 4px; color: blue;" />
                 </SeparatorTemplate>
             </asp:Repeater>
         </ItemTemplate>
