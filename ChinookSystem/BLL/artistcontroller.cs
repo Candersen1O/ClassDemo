@@ -22,5 +22,15 @@ namespace ChinookSystem.BLL
                 return context.Artists.ToList();
             }
         }
+
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Artist> Artists_List()
+        {
+            using (var context = new ChinookContext())
+            {
+                return context.Artists.ToList();
+            }
+        }
     }
 }
