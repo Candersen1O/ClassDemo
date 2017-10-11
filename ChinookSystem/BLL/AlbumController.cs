@@ -63,6 +63,7 @@ namespace ChinookSystem.BLL
             }
         }//eom
 
+        [DataObjectMethod(DataObjectMethodType.Insert, false)]
         public int Albums_Add(Album item)
         {
             using (var context = new ChinookContext())
@@ -73,6 +74,7 @@ namespace ChinookSystem.BLL
             }
         }
 
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
         public int Albums_Update(Album item)
         {
             using (var context = new ChinookContext())
@@ -81,6 +83,8 @@ namespace ChinookSystem.BLL
                 return context.SaveChanges();
             }
         }
+
+
 
         public int Albums_Delete(int albumid)
         {
@@ -94,6 +98,30 @@ namespace ChinookSystem.BLL
         }
 
 
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void Albums_Delete(Album item)
+        {
+            Albums_Delete(item.AlbumId); 
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Album> Albums_List(Album item)
+        {
+            using (var context = new ChinookContext())
+            {
+               
+                return context.Albums.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public Album Albums_Get(int id)
+        {
+            using (var context=new ChinookContext())
+            {
+                return context.Albums.Find(id);
+            }
+        }
 
     }
 }
