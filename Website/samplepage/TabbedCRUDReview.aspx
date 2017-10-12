@@ -11,10 +11,34 @@
                 <li class="active"><a href="#search" data-toggle="tab">Lookup</a></li>
                 <li><a href="#crud" data-toggle="tab">Add Update Delete</a></li>
                 <li><a href="#listviewcrud" data-toggle="tab">ListView Crud</a></li>
+                <li><a href="#sad" data-toggle="tab">:(</a></li>
             </ul>
             <!-- tab content area -->
             <div class="tab-content">
                 <!-- user tab -->
+
+
+
+                <div class="tab-pane fade" id="sad">
+                    <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                        <ContentTemplate>
+                            <p>:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(
+                                <asp:Label ID="Label1" runat="server"></asp:Label>
+                               
+                                :(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(</p>
+
+
+
+                            <asp:ObjectDataSource ID="sadod" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Artist_List" TypeName="ChinookSystem.BLL.artistcontroller"></asp:ObjectDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+                </div>
+
+
+
+
                 <div class="tab-pane fade in active" id="search">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
@@ -168,7 +192,7 @@
                                             <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" /></td>
                                         <td>
                                             <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBox" /></td>
-                                       <%-- <td>
+                                        <%-- <td>
                                             <asp:TextBox Text='<%# Bind("Artist") %>' runat="server" ID="ArtistTextBox" /></td>
                                         <td>
                                             <asp:TextBox Text='<%# Bind("Tracks") %>' runat="server" ID="TracksTextBox" /></td>--%>
@@ -197,7 +221,7 @@
                                             <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" /></td>
                                         <td>
                                             <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBox" /></td>
-                                      <%--  <td>
+                                        <%--  <td>
                                             <asp:TextBox Text='<%# Bind("Artist") %>' runat="server" ID="ArtistTextBox" /></td>
                                         <td>
                                             <asp:TextBox Text='<%# Bind("Tracks") %>' runat="server" ID="TracksTextBox" /></td>--%>
@@ -237,7 +261,7 @@
                                                         <th runat="server">ArtistId</th>
                                                         <th runat="server">ReleaseYear</th>
                                                         <th runat="server">ReleaseLabel</th>
-                                                       <%-- <th runat="server">Artist</th>
+                                                        <%-- <th runat="server">Artist</th>
                                                         <th runat="server">Tracks</th>--%>
                                                     </tr>
                                                     <tr runat="server" id="itemPlaceholder"></tr>
@@ -271,7 +295,7 @@
                                             <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" /></td>
                                         <td>
                                             <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
-                            <%--            <td>
+                                        <%--            <td>
                                             <asp:Label Text='<%# Eval("Artist") %>' runat="server" ID="ArtistLabel" /></td>
                                         <td>
                                             <asp:Label Text='<%# Eval("Tracks") %>' runat="server" ID="TracksLabel" /></td>--%>
