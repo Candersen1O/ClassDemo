@@ -129,4 +129,12 @@ public partial class SamplePages_TabbedCRUDReview : System.Web.UI.Page
         ReleaseYear.Text = "";
         ReleaseLabel.Text = "";
     }
+
+
+//this is required to use MEssageusercontrol somethingsomethinsomething
+//in code behind to be called from ODS  
+protected void CheckForException(object sender, ObjectDataSourceStatusEventArgs e)
+{
+    MessageUserControl.HandleDataBoundException(e);
+}
 }

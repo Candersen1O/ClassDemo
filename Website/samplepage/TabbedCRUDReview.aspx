@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TabbedCRUDReview.aspx.cs" Inherits="SamplePages_TabbedCRUDReview" %>
 
+<%@ Register Src="~/usercontrols/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
+<uc1:MessageUserControl runat="server" ID="MessageUserControl" />
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="row jumbotron">
         <h1>Tabbed CRUD REview</h1>
+        <uc1:MessageUserControl />
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -323,7 +327,9 @@
                                 UpdateMethod="Albums_Update"
                                 OldValuesParameterFormatString="original_{0}"
                                 SelectMethod="Albums_List"
-                                TypeName="ChinookSystem.BLL.AlbumController">
+                                TypeName="ChinookSystem.BLL.AlbumController"
+                                OnDeleted="CheckForException" OnInserted="CheckForException" OnUpdated="CheckForException" OnSelected="CheckForException">
+                               
                                 <SelectParameters>
                                     <asp:Parameter Name="item" Type="Object"></asp:Parameter>
                                 </SelectParameters>
@@ -337,6 +343,8 @@
             </div>
         </div>
         <%-- some people place all ODS contrls in one location for  ease of use. not necessary. any ods is available to all tabs--%>
+    <%-- install radiobuttons use edit items to create individual selection. can change the defualt vertical layout by chaning the control properties.
+        remember to include selectedvalue attribute--%>
     </div>
 </asp:Content>
 
