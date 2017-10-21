@@ -2,11 +2,11 @@
 
 <%@ Register Src="~/usercontrols/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
 
-<uc1:MessageUserControl runat="server" ID="MessageUserControl" />
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="row jumbotron">
         <h1>Tabbed CRUD REview</h1>
-        <uc1:MessageUserControl />
+        <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -161,7 +161,7 @@
                             <asp:ListView ID="ListViewcrud" runat="server" DataSourceID="listviewODS" InsertItemPosition="LastItem" DataKeyNames="AlbumID">
 
                                 <AlternatingItemTemplate>
-                                    <tr style="background-color:aqua; border:double">
+                                    <tr style="background-color: aqua; border: double">
                                         <td>
                                             <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
                                             <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
@@ -187,7 +187,7 @@
                                     </tr>
                                 </AlternatingItemTemplate>
                                 <EditItemTemplate>
-                                    <tr style="background-color:black; border:double">
+                                    <tr style="background-color: black; border: double">
                                         <td>
                                             <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
                                             <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
@@ -211,14 +211,14 @@
                                     </tr>
                                 </EditItemTemplate>
                                 <EmptyDataTemplate>
-                                    <table runat="server" style="border:double">
+                                    <table runat="server" style="border: double">
                                         <tr>
                                             <td>No data was returned.</td>
                                         </tr>
                                     </table>
                                 </EmptyDataTemplate>
                                 <InsertItemTemplate>
-                                    <tr style="border:double">
+                                    <tr style="border: double">
                                         <td>
                                             <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
                                             <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
@@ -242,7 +242,7 @@
                                     </tr>
                                 </InsertItemTemplate>
                                 <ItemTemplate>
-                                    <tr style="border:double">
+                                    <tr style="border: double">
                                         <td>
                                             <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
                                             <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
@@ -296,7 +296,7 @@
                                     </table>
                                 </LayoutTemplate>
                                 <SelectedItemTemplate>
-                                    <tr style="border:double">
+                                    <tr style="border: double">
                                         <td>
                                             <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
                                             <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
@@ -329,7 +329,7 @@
                                 SelectMethod="Albums_List"
                                 TypeName="ChinookSystem.BLL.AlbumController"
                                 OnDeleted="CheckForException" OnInserted="CheckForException" OnUpdated="CheckForException" OnSelected="CheckForException">
-                               
+
                                 <SelectParameters>
                                     <asp:Parameter Name="item" Type="Object"></asp:Parameter>
                                 </SelectParameters>
@@ -343,7 +343,7 @@
             </div>
         </div>
         <%-- some people place all ODS contrls in one location for  ease of use. not necessary. any ods is available to all tabs--%>
-    <%-- install radiobuttons use edit items to create individual selection. can change the defualt vertical layout by chaning the control properties.
+        <%-- install radiobuttons use edit items to create individual selection. can change the defualt vertical layout by chaning the control properties.
         remember to include selectedvalue attribute--%>
     </div>
 </asp:Content>
