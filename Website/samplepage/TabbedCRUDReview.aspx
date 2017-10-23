@@ -5,9 +5,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="row jumbotron">
         <h1>Tabbed CRUD REview</h1>
-        <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
-
+        
     </div>
+    <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+
     <div class="row">
         <div class="col-md-12">
             <!-- Nav tabs -->
