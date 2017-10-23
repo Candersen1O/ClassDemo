@@ -34,7 +34,12 @@
                                 :(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(:(
                             </p>
 
-
+                            <%-- Security- 
+                                hardware security - sepertate systems into seperate physical machines. Firewalls, 
+                                software- os, windows nt authentication, form authentication, set up for user/user group.certain users gain access to certain systems. Roles. userroles. test for permissions. login & roles. check via web server & application server. database server can also grant or restrict permissions.
+                                personel-human factor
+                                software cont- we need to create classes to represent users and roles. Security framework methods.
+                                --%>
 
                             <asp:ObjectDataSource ID="sadod" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Artist_List" TypeName="ChinookSystem.BLL.artistcontroller"></asp:ObjectDataSource>
 
