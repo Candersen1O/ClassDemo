@@ -9,5 +9,9 @@ namespace Chinook.Data.Entities.Security
 {
     public class ApplicationUser : IdentityUser
     {
+
+        public int? EmployeeID { get; set; }
+        public int? CustomerID { get; set; }
+
     }
 }
