@@ -34,7 +34,7 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
         //PreRenderComplete occurs just after databinding page events
         //load a pointer to point to your DataPager control
         DataPager thePager = TracksSelectionList.FindControl("DataPager1") as DataPager;
-        if (thePager !=null)
+        if (thePager != null)
         {
             //this code will check the StartRowIndex to see if it is greater that the
             //total count of the collection
@@ -48,29 +48,65 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
     protected void ArtistFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "Artist";
+        SearchArgID.Text = ArtistDDL.SelectedValue;
+        TracksSelectionList.DataBind();
     }
 
     protected void MediaTypeFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "MediaType";
+        SearchArgID.Text = MediaTypeDDL.SelectedValue;
+        TracksSelectionList.DataBind();
     }
 
     protected void GenreFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "Genre";
+        SearchArgID.Text = GenreDDL.SelectedValue;
+        TracksSelectionList.DataBind();
     }
 
     protected void AlbumFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "Album";
+        SearchArgID.Text = AlbumDDL.SelectedValue;
+        TracksSelectionList.DataBind();
     }
 
     protected void PlayListFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        //standard query implementation
+        if (string.IsNullOrEmpty(PlaylistName.Text))
+        {
+            //throw error message
+            //use usercontrolmessage. MessageUserControl
+            MessageUserControl.ShowInfo("Warning...", "Playlist Name is required...");
+            //the user control will be the mechanism to display messages on this form
+        }
+        else
+        {
+            //no need for try catches, the MEssageUserControl has the trycatch coding built inside it
+            //
+            MessageUserControl.TryRun(() =>
+            {
+                //this is the process coding block to be executed under the "watchful eye" of the MUC
+                //
+                //obtain username from the security part of the application
+                string username = User.Identity.Name;
+                PlaylistTracksController sysmgr = new PlaylistTracksController();
+                List<UserPlaylistTrack> playlist = sysmgr.List_TracksForPlaylist(PlaylistName.Text, username);
+                PlayList.DataSource = playlist;
+                PlayList.DataBind();
+            });
+        }
     }
 
-    protected void TracksSelectionList_ItemCommand(object sender, 
+    protected void TracksSelectionList_ItemCommand(object sender,
         ListViewCommandEventArgs e)
     {
         //code to go here
