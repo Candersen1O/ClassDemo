@@ -102,7 +102,7 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
                 List<UserPlaylistTrack> playlist = sysmgr.List_TracksForPlaylist(PlaylistName.Text, username);
                 PlayList.DataSource = playlist;
                 PlayList.DataBind();
-            });
+            }, "", "Here is your current playlist");
         }
     }
 
