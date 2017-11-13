@@ -109,7 +109,27 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
     protected void TracksSelectionList_ItemCommand(object sender,
         ListViewCommandEventArgs e)
     {
-        //code to go here
+        //ListViewCommandEventArgs parameter e contains the commandarg value (in this case TrackID)
+        if (string.IsNullOrEmpty(PlaylistName.Text))
+        {
+            MessageUserControl.ShowInfo("", "bad end");
+        }
+        else
+        {
+            string username = User.Identity.Name;
+            //track id is going to come from e.CommandArgument
+            //e.comarg is Antlr object so needs to be a string
+            int trackid = int.Parse(e.CommandArgument.ToString());
+            //the following code calls a BLL method to add to the database
+            MessageUserControl.TryRun(() =>
+            {
+                PlaylistTracksController sysmgr = new PlaylistTracksController();
+                List<UserPlaylistTrack> refreshresults = sysmgr.Add_TrackToPLaylist(PlaylistName.Text, username, trackid);
+                PlayList.DataSource = refreshresults;
+                PlayList.DataBind();
+            }, "Sucess", "Added to Playlist"
+            );
+        }
     }
 
     protected void MoveUp_Click(object sender, EventArgs e)
