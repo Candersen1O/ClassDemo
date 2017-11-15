@@ -70,7 +70,7 @@ namespace ChinookSystem.BLL
                 if (exists == null)
                 {
                     exists = new Playlist();
-                    exists.Name= playlistname;
+                    exists.Name = playlistname;
                     exists.UserName = username;
                     exists = context.Playlists.Add(exists);
                     tracknumber = 1;
@@ -81,7 +81,7 @@ namespace ChinookSystem.BLL
                     //need to know the number of tracks currently on the list
                     tracknumber = exists.PlaylistTracks.Count() + 1;
                     //playlist can only have a track once per playlist
-                    newtrack = exists.PlaylistTracks.SingleOrDefault(x => x.TrackId==trackid);
+                    newtrack = exists.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackid);
                     //this will be null if the track is not in the playlist
                     if (newtrack != null)
                     {
@@ -108,7 +108,76 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-                //code to go here 
+                var exists = (from x in context.Playlists
+                              where x.UserName == username && x.Name.Equals(playlistname)
+                              select x).FirstOrDefault();
+                if (exists == null)
+                {
+                    throw new Exception("Playlist no longer exist.");
+                }
+                else
+                {
+                    //limit serach to specific playlist
+                    PlaylistTrack movedtrack = (from x in exists.PlaylistTracks where x.TrackId == trackid select x).FirstOrDefault();
+                    if (movedtrack == null)
+                    {
+                        throw new Exception("Track no longer exists on this playlist");
+                    }
+                    else
+                    {
+                        PlaylistTrack collateraltrack = null;
+                        if (direction == "up")
+                        {
+                            //not necessary
+                            if (movedtrack.TrackNumber == 1)
+                            {
+                                throw new Exception("Track cannot get any higher. Track cannot moved.");
+                            }
+                            else
+                            {
+                                collateraltrack = (from x in exists.PlaylistTracks where x.TrackNumber==movedtrack.TrackNumber-1 select x).FirstOrDefault();
+                                if (collateraltrack == null)
+                                {
+                                    throw new Exception("playlist track cannot move up");
+                                }
+                                else
+                                {
+                                    //at this point we can switch track numbers
+                                    movedtrack.TrackNumber -= 1;
+                                    collateraltrack.TrackNumber += 1;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (movedtrack.TrackNumber == exists.PlaylistTracks.Count)
+                            {
+                                throw new Exception("Track cannot get any lower. Track cannot moved.");
+                            }
+                            else
+                            {
+                                collateraltrack = (from x in exists.PlaylistTracks where x.TrackNumber == movedtrack.TrackNumber + 1 select x).FirstOrDefault();
+                                if (collateraltrack == null)
+                                {
+                                    throw new Exception("playlist track cannot move down");
+                                }
+                                else
+                                {
+                                    //at this point 
+                                    movedtrack.TrackNumber += 1;
+                                    collateraltrack.TrackNumber -= 1;
+                                }
+                            }
+                        }
+
+                        //stage for update
+                        //indicate only thr filed that needs an update
+                        context.Entry(movedtrack).Property(y => y.TrackNumber).IsModified = true;
+                        context.Entry(collateraltrack).Property(y => y.TrackNumber).IsModified = true;
+                        context.SaveChanges();
+                    }
+                }
+
 
             }
         }//eom
