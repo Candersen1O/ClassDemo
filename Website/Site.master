@@ -104,6 +104,8 @@
                                 <asp:MenuItem Text="Third Linq Demo" NavigateUrl="~/samplepage/RepeaterExample.aspx"></asp:MenuItem>
                                 
                                 <asp:MenuItem Text="UX" NavigateUrl="~/samplepage/ManagePlaylist.aspx"></asp:MenuItem>
+                                
+                                <asp:MenuItem Text="Report" NavigateUrl="~/samplepage/GenreAlbumReport.aspx"></asp:MenuItem>
                             </asp:MenuItem>
 
                             <asp:MenuItem Text="crud" NavigateUrl="~/samplepage/TabbedCRUDReview.aspx"></asp:MenuItem>
