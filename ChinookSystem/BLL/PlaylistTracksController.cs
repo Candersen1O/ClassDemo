@@ -135,7 +135,7 @@ namespace ChinookSystem.BLL
                             }
                             else
                             {
-                                collateraltrack = (from x in exists.PlaylistTracks where x.TrackNumber==movedtrack.TrackNumber-1 select x).FirstOrDefault();
+                                collateraltrack = (from x in exists.PlaylistTracks where x.TrackNumber == movedtrack.TrackNumber - 1 select x).FirstOrDefault();
                                 if (collateraltrack == null)
                                 {
                                     throw new Exception("playlist track cannot move up");
@@ -183,12 +183,50 @@ namespace ChinookSystem.BLL
         }//eom
 
 
-        public void DeleteTracks(string username, string playlistname, List<int> trackstodelete)
+        public List<UserPlaylistTrack> DeleteTracks(string username, string playlistname, List<int> trackstodelete)
         {
             using (var context = new ChinookContext())
             {
                 //code to go here
+                //conerned of casing  "****, StringComaprison.OrdinalIgnoreCase
+                Playlist exists = (from x in context.Playlists
+                                   where x.UserName.Equals(username) && x.Name.Equals(playlistname)
+                                   select x).FirstOrDefault();
+                if (exists == null)
+                {
+                    throw new Exception("Playlist has been removed from the site");
+                }
+                else
+                {
+                    //the tracks that aren't to be deleted
+                    var safetracks = exists.PlaylistTracks
+                        .Where(tr => !trackstodelete.Any(ttd => ttd == tr.TrackId))
+                        .Select(tr => tr);
+                    //remove unwanted tracks
+                    PlaylistTrack item = null;
+                    foreach (var deletetrack in trackstodelete)
+                    {
+                        item = exists.PlaylistTracks
+                            .Where(dx => dx.TrackId == deletetrack)
+                            .FirstOrDefault();
+                        if (item != null)
+                        {
+                            exists.PlaylistTracks.Remove(item);
+                        }
 
+                    }
+                    //renumber remaining tracks
+                    //in our database there are no holes in the numeric sequence
+                    int counter = 1;
+                    foreach (var track in safetracks)
+                    {
+                        track.TrackNumber = counter;
+                        context.Entry(track).Property(y => y.TrackNumber).IsModified = true;
+                        counter++;
+                    }
+                    context.SaveChanges();
+                    return List_TracksForPlaylist(playlistname, username);
+                }
 
             }
         }//eom

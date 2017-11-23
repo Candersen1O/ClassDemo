@@ -263,6 +263,55 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
     }
     protected void DeleteTrack_Click(object sender, EventArgs e)
     {
-        //code to go here
+        if (PlayList.Rows.Count == 0)
+        {
+            MessageUserControl.ShowInfo("BAD", "No playlist has been retrieved");
+
+        }
+        else
+        {
+            if (String.IsNullOrEmpty(PlaylistName.Text))
+            {
+                MessageUserControl.ShowInfo("bad", "no playlist name. gimee");
+            }
+            else
+            {
+                //colelct the selecte tracks to delete
+                //amke sure there are at least 1
+                List<int> tracktodelete=new List<int>();
+                int selectedrows = 0;
+                CheckBox playlistselection = null;
+                for (int i=0; i < PlayList.Rows.Count; i++)
+                {
+                    playlistselection = PlayList.Rows[i].FindControl("Selected") as CheckBox;
+                    if (playlistselection.Checked)
+                    {
+                        tracktodelete.Add(int.Parse((PlayList.Rows[i].FindControl("TrackId") as Label).Text));
+                        selectedrows++;
+                    }
+                }
+               if (selectedrows == 0)
+                {
+                    MessageUserControl.ShowInfo("bad", "no track selected to delete");
+
+                }
+                else
+                {
+                    //you got what you need
+                    //send to bll for processing
+                    MessageUserControl.TryRun(() =>
+                    {
+
+                        PlaylistTracksController sysmgr = new PlaylistTracksController();
+                        List<UserPlaylistTrack> playlistdata=sysmgr.DeleteTracks(User.Identity.Name, PlaylistName.Text, tracktodelete);
+                        PlayList.DataSource = playlistdata;
+                        PlayList.DataBind();
+                    },"Removed", "Tracks have been removed from playlist");
+
+                }
+            }
+        }
+
+
     }
 }
